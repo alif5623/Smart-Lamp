@@ -27,37 +27,14 @@ while True:
         r.adjust_for_ambient_noise(source)
         print("Please say something")
         if(keyboard.is_pressed('v')):
-            audio = r.listen(source)
+            audio = r.listen(source) #listen from mic
             try:
-                command = str(r.recognize_google(audio)).lower()         
+                command = str(r.recognize_google(audio)).lower() #convert whole string to lower case         
                 print("You have said : \n")
                 print(command)
                 if(command == "turn on the light"):
-                    serialInst.write(bytes("2", 'utf-8'))
+                    serialInst.write(bytes("2", 'utf-8')) #On condition
                 else:
-                    serialInst.write(bytes("1", 'utf-8'))
+                    serialInst.write(bytes("1", 'utf-8')) #Off Condition
             except Exception as e:
                 print("Error: " + str(e))
-   # time.sleep(1)
-""""
-r = sr.Recognizer()
-def main():
-    loop()
-
-def loop():
-    while(True):
-      with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)
-        print("Please say something")
-        if(keyboard.is_pressed('v')):
-            audio = r.listen(source)
-            try:
-                command = str(r.recognize_google(audio)).lower()         
-                print("You have said : \n")
-                print(command)
-                    
-            except Exception as e:
-                print("Error: " + str(e))
-if __name__ == "__main__":
-    main()       
-    """
